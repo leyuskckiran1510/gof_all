@@ -1,7 +1,7 @@
 # Conway's Game Of Life in Ada
 
-[image1](./imgs/1.png)
-[image2](./imgs/2.png)
+[!image1](./imgs/1.png)
+[!image2](./imgs/2.png)
 
 # How to run
 
