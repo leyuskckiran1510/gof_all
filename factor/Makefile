@@ -1,0 +1,2 @@
+all:
+	factor ./gof.factor
