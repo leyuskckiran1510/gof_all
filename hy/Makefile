@@ -1,0 +1,2 @@
+all:
+	hy gol.hy
