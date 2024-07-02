@@ -1,0 +1,2 @@
+all:
+	icon ./gof.icn

@@ -1,0 +1,133 @@
+link graphics
+link random
+
+$define HEIGHT 50
+$define WIDTH  50
+$define Interval 100
+
+procedure main(args)
+   local w, h,x,y
+   static matrix
+   initial{
+     matrix := [
+                [0,0,0,0,0],
+                [0,0,1,0,0],
+                [0,0,0,1,0],
+                [0,1,1,1,0],
+                [0,0,0,0,0],
+             ]
+   }
+
+   Window("bg=white", "width=350", "height=350", args)
+   w := integer(WAttrib("width"))
+   h := integer(WAttrib("height"))
+   # x := w/2 - (WIDTH * 3.5 )
+   # y := h/2 - (HEIGHT * 3.5)
+   x:= 0
+   y:=0
+   draw(matrix,x,y)
+   until WQuit() do {
+     EraseArea()
+     draw(matrix,x,y)
+     matrix := next_step(matrix)
+     # x:=x+10
+    WDelay(Interval)
+
+}
+
+end
+
+procedure next_step(matrix)
+    local buffer,y,x,count
+    count:=0
+    buffer := [
+                [0,0,0,0,0],
+                [0,0,0,0,0],
+                [0,0,0,0,0],
+                [0,0,0,0,0],
+                [0,0,0,0,0],
+             ]
+    every y := 1 to 5 do {
+         every x := 1 to 5 do{
+            count := 0
+            count := alive(matrix,x,y)
+
+            if count = 3 then{
+                buffer[y,x] := 1
+            } else{
+                if count = 2 then{
+                    buffer[y,x] := matrix[y,x]
+                }else{
+                    buffer[y,x] := 0
+                }
+            }
+         }
+     }
+    return buffer
+end
+
+procedure draw(matrix,ix,iy)
+    local colum,x,y,row_index
+    x := ix
+    y:= iy
+     every row_index := 1 to 5 do {
+        y:= y + HEIGHT
+        x := ix
+         every colum := !matrix[row_index] do{
+            x := x + WIDTH
+            if  colum = 1 then{
+                Fg("blue")
+            }
+            if  colum = 0  then{
+                Fg("green")
+         }
+         FillRectangle(x, y,WIDTH,HEIGHT)
+         Fg("black") 
+         DrawRectangle(x, y,WIDTH,HEIGHT) 
+        }
+     }
+end
+
+procedure alive(matrix,x,y)
+    local i,count,newx,newy,cur
+    static dirs 
+    initial {
+        dirs := [
+                [1,-1],
+                [1,0],
+                [1,1],
+                [-1,-1],
+                [-1,0],
+                [-1,1],
+                [0,1],
+                [0,-1],
+                 ]
+    }
+    count := 0
+    cur := 0
+    newx := 0
+    newy := 0
+    every i:= 1 to 8 do{
+
+        newx := (x + dirs[i,1] + 5 ) % 5
+        
+        if newx=0 then{
+            newx := 5
+        } 
+        
+        newy := (y + dirs[i,2] + 5 )  % 5
+        
+        if newy=0 then{
+            newy := 5
+        }
+
+        cur := matrix[newy,newx]
+        if  cur = 1 then{
+            count := count + 1
+            cur := 0
+        }        
+    }
+    # write(" ",y,", ",x," = ",count)
+    return count
+
+end
