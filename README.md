@@ -10,4 +10,6 @@
 7.  H => 'Hy' [stream](https://youtu.be/RCcMudBsDAY)
 8.  I => 'Icon' [stream](https://youtu.be/kwL-8qFN83c)
 9.  J => 'Java' [stream](https://youtu.be/jGSJ96-W98M)
-10. K => 'Koka' [stream]()
+10. K => 'Koka' [stream](https://youtu.be/hpxq6p0j7CQ)
+11. L => 'Lisp' [stream]()
+12. M => ' MachineCode' [stream]()
