@@ -12,4 +12,5 @@
 9.  J => 'Java' [stream](https://youtu.be/jGSJ96-W98M)
 10. K => 'Koka' [stream](https://youtu.be/hpxq6p0j7CQ)
 11. L => 'Lisp' [stream]()
-12. M => ' MachineCode' [stream]()
+12. M => ' MachineCode' [stream](https://youtu.be/XtYlKV3-rFU)
+13. N => 'Nim'[stream](https://youtu.be/t7gYFAzFEXc)
