@@ -16,4 +16,5 @@
 13. N => 'Nim'[stream](https://youtu.be/t7gYFAzFEXc)
 14. O => 'Ocaml'[stream](https://youtu.be/4jxJkVTiJbg)
 15. P => 'Processing + p5Js'[stream](https://youtu.be/mkANVuVGwGg)
-16. Q => 'qBasic' [stream]()
+16. Q => 'qBasic' [stream](https://youtu.be/z0U_dQt0doQ)
+17. R => 'Racket' [stream]()
