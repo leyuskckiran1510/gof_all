@@ -17,4 +17,5 @@
 14. O => 'Ocaml'[stream](https://youtu.be/4jxJkVTiJbg)
 15. P => 'Processing + p5Js'[stream](https://youtu.be/mkANVuVGwGg)
 16. Q => 'qBasic' [stream](https://youtu.be/z0U_dQt0doQ)
-17. R => 'Racket' [stream]()
+17. R => 'Racket' [stream](https://youtu.be/hd2zzERMnDo)
+17. S => 'Swift' [stream]()
