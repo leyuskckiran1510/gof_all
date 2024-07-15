@@ -18,4 +18,5 @@
 15. P => 'Processing + p5Js'[stream](https://youtu.be/mkANVuVGwGg)
 16. Q => 'qBasic' [stream](https://youtu.be/z0U_dQt0doQ)
 17. R => 'Racket' [stream](https://youtu.be/hd2zzERMnDo)
-17. S => 'Swift' [stream]()
+18. S => 'Swift' [stream](https://youtu.be/B02yvOS4fBI)
+19. T => 'Tcl' [stream]()
