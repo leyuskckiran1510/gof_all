@@ -1,0 +1,51 @@
+(
+    0100 -> where PC starts with
+    LIT -> push next byte to stack
+    DEO -> takes two bytes,
+            1st byte to address the device
+            2nd byte to put that value to  device
+    10 -> stdin/out device
+        12 -> stdin fd
+        18 -> stdout fd
+
+    #0200 writeline len buffer
+)
+
+|12 @readc
+|18 @writec
+
+%putc    { .writec DEO }
+%newline { #0a putc }
+
+
+
+%write {
+    #0200 STA
+    writeword JSR  
+}
+%writeline {
+    write
+    newline 
+}
+
+|0100 
+    LIT  "o 
+    LIT  "l 
+    LIT  "l 
+    LIT  "e 
+    LIT  "h 
+    #6
+    writeline
+    LIT "k
+    #01
+    writeline
+
+
+@writeword 
+#0200 LDA
+#01 SUB
+DUP
+#0200 STA
+#00 GTH SWP putc ,writeword JCN
+#00 #0200 STA
+JMP2r
