@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script async type="text/javascript" src="gol.js"></script>
+    <style>
+        body{
+            display: flex;
+            height: 100vh;
+            justify-content: space-around;
+            align-items: center;
+            align-content: space-between;
+            width: 100vw;
+            background: #191924;
+            overflow: hidden;
+         
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            border: solid gray 1px;
+        }
+        .alive{
+            background: white;
+        }
+        .dead{
+            background: black;
+        }
+        .canvas{
+            max-width: 550px;
+            min-width: 550px;
+            display: flex;
+            grid-template-columns: max-content;
+            flex-wrap: wrap;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="canvas">
+        
+    </div>
+
+</body>
+
+
+<script>
+window.onload =(_)=>{
+    canvas = document.querySelector('.canvas')
+    interval_id = setInterval(()=>{
+         var ppcStr = _malloc(41);
+        _get_next_step_html(ppcStr);
+         var pcStr = Module.getValue(ppcStr, "i32");
+        var jsStr = Module.UTF8ToString(pcStr);
+        canvas.innerHTML = jsStr;
+    },200)
+
+}
+</script>
+
+
+</html>
