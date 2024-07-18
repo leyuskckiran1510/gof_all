@@ -21,4 +21,5 @@
 18. S => 'Swift' [stream](https://youtu.be/B02yvOS4fBI)
 19. T => 'Tcl' [stream](https://youtu.be/Kw7cu9UoR8A)
 20. U => 'UxnTal' [stream](https://youtu.be/UsTbGu5_F8Q)
-21. V => 'VisualBasic' [stream]()
+21. V => 'VisualBasic' [stream](https://youtu.be/Dos2qtdvg-8)
+22. W => 'Webassembly' [stream]()
