@@ -23,4 +23,5 @@
 20. U => 'UxnTal' [stream](https://youtu.be/UsTbGu5_F8Q)
 21. V => 'VisualBasic' [stream](https://youtu.be/Dos2qtdvg-8)
 22. W => 'Webassembly' [stream](https://youtu.be/_6hbLkl5MlI)
-23. X => 'X10' [stream]()
+23. X => 'X10' [stream](https://youtu.be/UX9m8FE4s8w)
+24. Y => 'YoRick' [stream]()
