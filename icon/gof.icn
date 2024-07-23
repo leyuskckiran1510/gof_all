@@ -110,16 +110,17 @@ procedure alive(matrix,x,y)
     every i:= 1 to 8 do{
 
         newx := (x + dirs[i,1] + 5 ) % 5
+        newy := (y + dirs[i,2] + 5 )  % 5
         
+        # wrap the index, as index starts with 1
         if newx=0 then{
             newx := 5
         } 
-        
-        newy := (y + dirs[i,2] + 5 )  % 5
-        
         if newy=0 then{
             newy := 5
         }
+        
+        
 
         cur := matrix[newy,newx]
         if  cur = 1 then{

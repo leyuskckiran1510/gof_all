@@ -31,50 +31,29 @@ procedure Gof is
       alive_count:Integer :=0;
       new_x:Integer;
       new_y:Integer;
+      dx:Integer;
+      dy:Integer;
       begin
           for y in input'Range loop
                 for x in input(y)'Range loop
                     alive_count:=0;
-                    -- (-1,-1)
-                    new_x := (mat_size +x-1) mod mat_size ;
-                    new_y := (mat_size +y-1) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                     -- (-1,0)
-                    new_x := (mat_size +x-1) mod mat_size ;
-                    new_y := (mat_size +y) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                 -- (-1,1)
-                    new_x := (mat_size +x-1) mod mat_size ;
-                    new_y := (mat_size +y+1) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                 -- (0,-1)
-                    new_x := (mat_size +x) mod mat_size ;
-                    new_y := (mat_size +y-1) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                 -- (0,1)
-                    new_x := (mat_size +x) mod mat_size ;
-                    new_y := (mat_size +y+1) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                 -- (1,0)
-                    new_x := (mat_size +x+1) mod mat_size ;
-                    new_y := (mat_size +y) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                 -- (1,1)
-                    new_x := (mat_size +x+1) mod mat_size ;
-                    new_y := (mat_size +y+1) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
-                 -- (1,-1)
-                    new_x := (mat_size +x+1) mod mat_size ;
-                    new_y := (mat_size +y-1) mod mat_size ;
-                    alive_count := alive_count + check(input,new_x,new_y);
-                
+                    for ldx in 0..2 loop
+                        for ldy  in 0..2  loop
+
+                            dx := ldx - 1;
+                            dy := ldy - 1;
+                            
+                            if dx = 0 and dy = 0 then
+                                -- random no op as ada doesnot has continue
+                                dy := 0 ;
+                            else
+                                -- Ada.Text_IO.Put(dx'Image&","&dy'Image&" " );
+                                new_x := (mat_size +x + dx ) mod mat_size ;
+                                new_y := (mat_size +y + dy ) mod mat_size ;
+                                alive_count := alive_count + check(input,new_x,new_y);
+                            end if;
+                        end loop;
+                    end loop;
 
                     if alive_count < 2 or alive_count > 3 then
                         output(y)(x) := 0;
@@ -129,7 +108,7 @@ procedure Gof is
    Delay_Duration : constant Time_Span := Milliseconds(100); -- 1 second
 begin
 
-    for i in 1 .. 10000 loop
+    for i in 1 ..10000 loop
        Display(input);
        delay until Clock + Delay_Duration;
        input := Alive(input);

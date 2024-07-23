@@ -46,53 +46,18 @@ nextsetp(){
         for (( j = 0; j < $((size)) ; j++ )); do
             alive_count=0;
 
-            # -1,-1
-            x=$(( (j+size-1)%size ))
-            y=$(( (i+size-1)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
+            for (( dx = -1; dx <= 1; dx++ )); do
+                for (( dy = -1; dy <= 1; dy++ )); do
+                    if [[ $dx -eq 0 && $dy -eq 0  ]]; then
+                        continue
+                    fi
+                    x=$(( (j+size + dx )%size ))
+                    y=$(( (i+size + dy )%size ))
+                    is_alive $x $y $alive_count
+                    alive_count=$?
+                done
+            done
 
-            # 0,-1
-            x=$(( (j+size)%size ))
-            y=$(( (i+size-1)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
-
-            # 1,-1
-            x=$(( (j+size+1)%size ))
-            y=$(( (i+size-1)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
-
-            # -1,0
-            x=$(( (j+size-1)%size ))
-            y=$(( (i+size)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
-
-            # -1,1
-            x=$(( (j+size-1)%size ))
-            y=$(( (i+size+1)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
-
-            # 0,1
-            x=$(( (j+size)%size ))
-            y=$(( (i+size+1)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
-
-            # 1,0
-            x=$(( (j+size+1)%size ))
-            y=$(( (i+size)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
-
-            # 1,1
-            x=$(( (j+size+1)%size ))
-            y=$(( (i+size+1)%size ))
-            is_alive $x $y $alive_count
-            alive_count=$?
 
 
             if [[ $((FRAME_COUNT%2)) -eq 0 ]]; then

@@ -25,4 +25,8 @@
 23. W => 'Webassembly' [stream](https://youtu.be/_6hbLkl5MlI)
 24. X => 'X10' [stream](https://youtu.be/UX9m8FE4s8w)
 25. Y => 'YoRick' [stream](https://youtu.be/VOZGKFzTIkQ)
-26. Z => 'Zig' [stream]()
+26. Z => 'Zig' [stream](https://youtu.be/eY1groEaAzc)
+
+#  Completing the leftovers tasks
+1. A -> K , optimized or refactor code, and complete Koka, `factor` is still leftout for last
+    [stream]()
