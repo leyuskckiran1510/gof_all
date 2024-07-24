@@ -34,6 +34,6 @@
     [stream]()
 
 # Not Completed
-- [x] factor
-- [x] machinecode/asm/nasm
-- [x] uxntal
+- [ ] factor
+- [ ] machinecode/asm/nasm
+- [ ] uxntal
