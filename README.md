@@ -29,4 +29,11 @@
 
 #  Completing the leftovers tasks
 1. A -> K , optimized or refactor code, and complete Koka, `factor` is still leftout for last
+    [stream](https://youtu.be/KqimhEWF0N4)
+2. `L` , complete lisp implementation of GOL,
     [stream]()
+
+# Not Completed
+[x] factor
+[x] machinecode/asm/nasm
+[x] uxntal

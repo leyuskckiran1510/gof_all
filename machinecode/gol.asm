@@ -1,5 +1,5 @@
 SECTION .data     
-msg:    db "00000001000001001110",10 
+msg:    db "000000010000010011100000",10
 len:    equ $-msg       
 width:  equ 0x5
 height: equ 0x5
