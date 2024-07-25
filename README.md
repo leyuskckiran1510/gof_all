@@ -31,7 +31,7 @@
 1. A -> K , optimized or refactor code, and complete Koka, `factor` is still leftout for last
     [stream](https://youtu.be/KqimhEWF0N4)
 2. `L` , complete lisp implementation of GOL,
-    [stream]()
+    [stream](https://youtu.be/p7XLOXTQHak)
 
 # Not Completed
 - [ ] factor
