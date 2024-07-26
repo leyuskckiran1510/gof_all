@@ -32,6 +32,11 @@
     [stream](https://youtu.be/KqimhEWF0N4)
 2. `L` , complete lisp implementation of GOL,
     [stream](https://youtu.be/p7XLOXTQHak)
+3. `M`, add new feature in assembly
+    [stream](https://youtu.be/ZCcxdryTiNo)
+4. `M`, still working on it, understood about register behaviour during 
+    function calls
+    [stream]()
 
 # Not Completed
 - [ ] factor
