@@ -24,11 +24,13 @@ print_stdout:
     ret
 
 xytoindex:
-    ; given value at ecx(row),edx(col) -> ecx (row * width + col)
+    ; given value at ebx(row),ecx(col) -> ecx (row * width + col)
     push rax
+    xor rax,rax
     mov eax,width
     mul ebx
     add eax,ecx
+    xor rcx,rcx
     mov ecx,eax
     pop rax
     ret
@@ -174,6 +176,97 @@ display_matrix:
     pop rax
     ret
 
+alive:
+    ; dx -> rax
+    ; dy -> rbx
+    ; x -> rdi
+    ; y -> rsi
+    push rax
+    push rbx
+    push rcx
+    push rdx
+    push r8
+
+    mov r8,0x0
+    mov eax,-0x1;
+    .dx_loop:
+        mov ebx,-0x1;
+        .dy_loop:
+            cmp eax,0x0;
+            push rax
+            push rbx
+            ; call display_matrix;
+            call print_matrix;
+            pop rbx
+            pop rax
+            jnz .lcontinue
+                cmp ebx,0x0
+                jnz .lcontinue
+                    call print_matrix;
+                    jmp .lskip; 
+            .lcontinue:
+            push rdi; save current x
+            push rsi; save current y
+            
+            add edi,eax; x + dx
+            add edi,width; x + dx + width
+
+            push rax
+            push rbx
+
+                mov edx,0
+                mov ebx,width;
+                mov eax,0
+                mov eax,edi
+                div ebx; (x+dx+width)/width quotient in eax, reminder in edx
+            
+            pop rbx
+            pop rax
+            ; edx <- newx
+            push rdx;save edx
+
+            add esi,ebx; y + dy
+            add esi,height; y + dy + height
+
+            push rax
+            push rbx
+
+                mov edx,0
+                mov ebx,height;
+                mov eax,0
+                mov eax,edi
+                div ebx; (x+dx+width)/width quotient in eax, reminder in edx
+            
+            pop rbx
+            pop rax
+            
+            mov ecx,edx; copy newy to ecx
+            pop rdx; restore saved newx to edx
+            push rbx
+            mov ebx,ecx;ebx<-newy 
+            mov ecx,edx;ecx<-newx
+            call matat;
+            ; ebx(row),ecx(col) 
+            pop rbx
+            cmp ecx,0x30; compare matrix[row][col], 0x30 (asscii '0')
+            jz .lskip; if it's not asscci-zero
+                inc r8; 
+            .lskip:
+            inc ebx
+            pop rsi
+            pop rdi
+            cmp ebx,0x2
+            jnz .dy_loop
+
+        inc eax
+        cmp eax,0x2
+        jnz .dx_loop
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+    ret
+
 
 
 main:
@@ -182,7 +275,12 @@ main:
     ; call print_matrix;
     ; call copy_to_matrix;
     ; call print_matrix;
-    call display_matrix;
+    mov edi,0x3
+    mov esi,0x1
+    call alive;
+    cmp r8,0x3;
+    jnz .end;
+        call display_matrix;
     .end:
         call exit_main
 
