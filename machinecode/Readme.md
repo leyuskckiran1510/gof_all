@@ -30,14 +30,14 @@
  or copy to calle-save registers
 
 - %rax  [use for funciton return]
-- %rsp [stack pointer] 
+- %rsp  [stack pointer] 
 
 - %rdi [first arg]
 - %rsi [second arg]
 - %rdx [third arg]
 - %rcx [fourth arg]
 - %r8  [fifth arg]
-- %r9 [sixth arg]
+- %r9  [sixth arg]
 
 - %r10
 - %r11
@@ -52,3 +52,25 @@
 - %r14
 - %r15
 
+
+[0,0,0,0,0]
+[0,0,0,0,0]
+[0,0,0,0,0]
+[0,0,0,0,0]
+[0,0,0,0,0]
+```as
+push rdx
+push rcx
+    mov edx,0x1
+
+    mov ecx,tmp
+    add ecx,r12d  
+    call print_stdout;    
+
+    mov ecx,tmp
+    add ecx,r13d  
+    call print_stdout;             
+    call print_new_line;
+pop rcx
+pop rdx
+```
