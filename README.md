@@ -36,6 +36,9 @@
     [stream](https://youtu.be/ZCcxdryTiNo)
 4. `M`, still working on it, understood about register behaviour during 
     function calls
+    [stream](https://youtu.be/G3YrVqIp8cc)
+5. `M` made some good progress, implemented `alive` count and `next_step` fucntion
+    , it seems to have bugged out at corners otherwise works
     [stream]()
 
 # Not Completed
