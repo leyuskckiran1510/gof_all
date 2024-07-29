@@ -1,14 +1,25 @@
 SECTION .data     
-matrix:    db "0000000100000100111000000",10
+; matrix:    db "0000000100000100111000000",10
+matrix:    db "0000000000000100101000110",10
 buff:      db "0000000000000000000000000",10
-tmp:       db "012345",10
+tmp:       db "012345 --deadzone--         ",10
+
+dead_sym2: db "⬛"; just a buffer
 dead_sym:  db "⬛"
 alive_sym: db "⬜"
+
 newline:   db 10
 buff_len:    equ 26    
 sym_len:     equ 3   
 width:  equ 0x5
 height: equ 0x5
+
+clear_str: db 27,"[1J",27,"[3;1H",0
+
+
+timeval:
+    tv_sec  dd 0
+    tv_usec dd 0
                 
 SECTION .text   
 global main  
@@ -101,28 +112,37 @@ matat:;given edi(row),esi(col) -> value at buff[row][col] as eax
     and eax,0xff ;mask out last 1byte only
     ret 
 
+buffat:;given edi(row),esi(col) -> value at buff[row][col] as eax 
+    ;max index 255 as of now
+    call xytoindex;
+    mov edi,buff
+    add edi, eax
+    mov eax,[edi]
+    and eax,0xff ;mask out last 1byte only
+    ret 
+
 
 copy_to_matrix:;(None)->None
     push rax
     push rbx
     push rcx
     push rdx
+    push rbp
 
     mov eax,width*height;
-    mov ebx,buff
-    mov ecx,matrix
     mov edx,0x0
     .iloop:
+        mov ebx,buff
+        mov ecx,matrix
         add ebx,edx 
         add ecx,edx
         inc edx
-        push rax
-        mov eax,[ebx]
-        mov [ecx],eax
-        pop rax
+        mov ebp,[ebx]
+        mov [ecx],ebp
         dec eax
         jnz .iloop;
 
+    pop rbp
     pop rdx
     pop rcx
     pop rbx
@@ -141,6 +161,31 @@ print_symbol:;(edi)->None
         mov ecx,dead_sym;
         call print_stdout;
     ret
+
+display_buffer:;(buffer_refrence) -> None
+    push r15
+        push r14
+            xor r15,r15
+            .row:
+                xor r14,r14
+                .col:
+                    ;edi -> row
+                    mov edi,r15d
+                    ;esi -> col
+                    mov esi,r14d
+                    call buffat;
+                    mov edi,eax
+                    call print_symbol;
+                    inc r14d
+                    cmp r14d,width
+                    jnz .col;
+                call print_new_line;
+                inc r15d;
+                cmp r15d,height
+                jnz .row;
+        pop r14
+        pop r15
+        ret
 
 display_matrix:;(None) -> None
     push r15
@@ -299,7 +344,6 @@ next_step:;(None) -> None
             cmp eax,0x30;
             
             jnz .do_insert_one
-
                 mov edi,r15d;rowl
                 mov esi,r14d;col
                 call xytoindex;given_value_at_edi(row),esi(col)_->_eax_(row_*_width_+_col)
@@ -324,6 +368,7 @@ next_step:;(None) -> None
 
 
         .finally:;
+
         inc r14d;
         cmp r14d,width;
         jnz .inner_loop;
@@ -339,22 +384,49 @@ next_step:;(None) -> None
 
 
 
+; 
+; 00000
+; 00000
+; 00010
+; 01010
+; 00110
+
+sleepnow:
+    push rax
+    push rbx
+        mov dword [tv_sec], 0 
+        mov dword [tv_usec], 90000000
+        mov eax, 162
+        mov ebx, timeval
+        mov ecx, 0
+        int 0x80
+    pop rbx
+    pop rax
+    ret
+
+clear_screen:
+    push rax
+    push rbx
+        mov edx,11;
+        mov ecx,clear_str;
+        call print_stdout;
+    pop rbx
+    pop rax
+    ret
+
 
 main:
-    ; mov edi,0x2;rowl
-    ; mov esi,0x1;col
-    ; call alive;
-    ; cmp eax,0x3;
-
-    mov rbp,7;
+    mov rbp,0xffff;
     .true_loop:
-    call display_matrix;
-    call next_step;(None)
-    call copy_to_matrix;
-    call print_new_line;
-    dec rbp;
+        call display_matrix;
+        ; call print_matrix;
+        call next_step;(None)
+        call copy_to_matrix;
+        call print_new_line;
+        call sleepnow;
+        call clear_screen;
+        dec rbp;
     jnz .true_loop;
-
     .end:
         call exit_main
 
