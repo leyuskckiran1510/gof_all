@@ -9,7 +9,7 @@
 7.  G => 'Go' [stream](https://youtu.be/1So88bm9JtA)
 8.  H => 'Hy' [stream](https://youtu.be/RCcMudBsDAY)
 9.  I => 'Icon' [stream](https://youtu.be/kwL-8qFN83c)
-10.  J => 'Java' [stream](https://youtu.be/jGSJ96-W98M)
+10. J => 'Java' [stream](https://youtu.be/jGSJ96-W98M)
 11. K => 'Koka' [stream](https://youtu.be/hpxq6p0j7CQ)
 12. L => 'Lisp' [stream]()
 13. M => ' MachineCode' [stream](https://youtu.be/XtYlKV3-rFU)
@@ -39,9 +39,15 @@
     [stream](https://youtu.be/G3YrVqIp8cc)
 5. `M` made some good progress, implemented `alive` count and `next_step` fucntion
     , it seems to have bugged out at corners otherwise works
-    [stream]()
+    [stream](https://youtu.be/iXqobAZnoiY)
+6. `M` completed GOl in asm, problem was with matrix_copy, 
+    and started `GOL` in idris
+    docs -> https://docs.idris-lang.org/en/latest/tutorial/typesfuns.html#functions
+    [steam]()
+
+
+
 
 # Not Completed
 - [ ] factor
-- [ ] machinecode/asm/nasm
 - [ ] uxntal
