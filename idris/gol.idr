@@ -149,7 +149,7 @@ ylooop (matrix,buffer,y,until) = ( ylooop (matrix, (
 
 mainloop: (Matrix,Matrix,Int) -> List( IO())
 mainloop (localMat,buffer,0) =  [ ( putStrLn "Game Completed" ) ]
-mainloop (localMat,buffer,until) = [ ( putStrLn "\x1b[1J\x1b[1;1H" ) ] ++ (display_matrix  localMat ) ++ [ ( putStrLn "" ) ]  ++  ( mainloop ( ( ylooop  ( localMat ,buffer,0, ( listLength (  localMat ,0) )  ) ) ,buffer, ( until - 1 ) ) ) 
+mainloop (localMat,buffer,until) = (display_matrix  localMat ) ++ [ ( putStrLn "" ) ]  ++  ( mainloop ( ( ylooop  ( localMat ,buffer,0, ( listLength (  localMat ,0) )  ) ) ,buffer, ( until - 1 ) ) ) 
 
 
 main : IO()
