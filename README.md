@@ -43,8 +43,10 @@
 6. `M` completed GOl in asm, problem was with matrix_copy, 
     and started `GOL` in idris
     docs -> https://docs.idris-lang.org/en/latest/tutorial/typesfuns.html#functions
-    [steam]()
-
+    [steam](https://youtu.be/Z7qwq56Qics)
+7. `I` -> idris, implemented GOL in idris, completed, time sleep and slowly print
+    not working other wise works
+    [stream]()
 
 
 
