@@ -51,5 +51,5 @@
 
 
 # Not Completed
-- [ ] factor
+- [x] factor; cannot do this, to much to learn 
 - [ ] uxntal
